@@ -1,27 +1,43 @@
 import {useState} from 'react';
+import {nintendoSwitch, gameboy, trash} from '../assets';
 
 const Main = () => {
   const [products, setProducts] = useState([
-    {name: 'Producto 1', price: 100},
-    {name: 'Producto 2', price: 200},
-    {name: 'Producto 3', price: 300},
-    {name: 'Producto 4', price: 400},
+    {name: 'Producto 1', price: 100, image: gameboy},
+    {name: 'Producto 2', price: 200, image: nintendoSwitch},
+    {name: 'Producto 3', price: 100, image: gameboy},
+    {name: 'Producto 4', price: 200, image: nintendoSwitch},
+    {name: 'Producto 5', price: 100, image: gameboy},
+    {name: 'Producto 6', price: 200, image: nintendoSwitch},
+    {name: 'Producto 7', price: 100, image: gameboy},
+    {name: 'Producto 8', price: 200, image: nintendoSwitch},
+    {name: 'Producto 9', price: 100, image: gameboy},
   ]);
 
   return (
-    <section className="flex justify-evenly max-container max-sm:flex-col-reverse">
+    <section className="flex justify-evenly max-container max-sm:flex-col-reverse max-sm:p-2">
       <div className="flex flex-col w-[50%] mb-6 max-sm:w-full">
         <div className="text-center h-[10%]">
           <h2 className="font-VT323 text-2xl">MIS PRODUCTOS:</h2>
         </div>
-        <div className="w-full h-full">
+        <div className="w-full h-full grid grid-cols-3 gap-2 max-sm:grid-cols-2">
           {products.map((product) => (
             <div
               key={product.name}
-              className="flex justify-between items-center w-full h-20 border-b border-gray-300"
+              className="p-2 bg-primary-purple border-4 border-black rounded-md shadow-md shadow-black"
             >
-              <p>{product.name}</p>
-              <p>{product.price}</p>
+              <div className="border-4 border-black rounded-md mb-2">
+                <img src={product.image} alt={product.name} />
+              </div>
+              <div className="flex justify-between items-end">
+                <div className="text-white">
+                  <p>{product.name}</p>
+                  <p className="font-bold">$ {product.price.toFixed(2)}</p>
+                </div>
+                <div>
+                  <img src={trash} alt="remove-icon" width={24} height={24} />
+                </div>
+              </div>
             </div>
           ))}
         </div>
