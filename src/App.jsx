@@ -9,7 +9,7 @@ export default function App() {
       <section>
         <Main />
       </section>
-      <section>
+      <section className="">
         <Footer />
       </section>
     </main>

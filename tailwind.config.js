@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        VT323: ['VT323', 'monospace'],
+      },
       colors: {
         'primary-magenta': '#8C0375',
         'secondary-magenta': '#C004D9',
