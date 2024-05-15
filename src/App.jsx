@@ -4,12 +4,12 @@ import Main from './sections/Main';
 
 export default function App() {
   return (
-    <main>
+    <main className="flex flex-col min-h-screen">
       <Header />
-      <section>
+      <section className="flex-1">
         <Main />
       </section>
-      <section className="">
+      <section>
         <Footer />
       </section>
     </main>

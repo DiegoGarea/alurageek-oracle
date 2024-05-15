@@ -5,17 +5,17 @@ import ProductCard from '../components/ProductCard';
 const Main = () => {
   const [newItem, setNewItem] = useState('');
   const [newItemPrice, setNewItemPrice] = useState('');
-  const [newItemImage, setNewItemImage] = useState(null); // Nuevo estado para la imagen
+  const [newItemImage, setNewItemImage] = useState(null);
   const [productsList, setProductsList] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (newItem === '' || newItemPrice === '' || !newItemImage) return;
-    addItem(newItem, newItemPrice, newItemImage); // Pasa la imagen al agregar el producto
+    addItem(newItem, newItemPrice, newItemImage);
     setNewItem('');
     setNewItemPrice('');
-    setNewItemImage(null); // Limpia los inputs después de agregar el producto
+    setNewItemImage(null);
   };
 
   const addItem = (title, price, image) => {
@@ -25,7 +25,7 @@ const Main = () => {
         id: v4(),
         name: title,
         price: price,
-        image: URL.createObjectURL(image), // Usa la URL de la imagen cargada
+        image: URL.createObjectURL(image),
       },
     ]);
   };
@@ -70,23 +70,12 @@ const Main = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setNewItemImage(e.target.files[0])} // Captura el archivo seleccionado
+            onChange={(e) => setNewItemImage(e.target.files[0])}
             className="input"
           />
-          <div className="flex w-[60%] justify-between max-sm:justify-evenly">
+          <div className="flex w-[60%] justify-center max-sm:justify-evenly">
             <button className="px-5 py-1 rounded-md bg-primary-blue text-white">
               Agregar
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setNewItem('');
-                setNewItemPrice('');
-                setNewItemImage(null);
-              }}
-              className="px-5 py-1 rounded-md border border-primary-blue text-primary-blue"
-            >
-              Limpiar
             </button>
           </div>
         </form>
