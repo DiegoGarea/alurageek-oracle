@@ -1,13 +1,13 @@
 import trash from '../assets/trash.png';
 
-const ProductCard = ({name, price, image}) => {
+const ProductCard = ({id, name, price, image, handleDelete}) => {
   return (
     <div
       key={name}
       className="p-2 bg-primary-purple border-4 border-black rounded-md shadow-md shadow-black"
     >
-      <div className="border-4 border-black rounded-md mb-2">
-        <img src={image} alt={name} />
+      <div className="border-4 border-black rounded-md mb-2 min-h-32 flex items-center justify-center">
+        <img src={image} alt="IMAGEN" className="max-h-full max-w-full" />
       </div>
       <div className="flex justify-between items-end">
         <div className="text-white">
@@ -16,7 +16,13 @@ const ProductCard = ({name, price, image}) => {
         </div>
         <div>
           <button>
-            <img src={trash} alt="remove-icon" width={24} height={24} />
+            <img
+              src={trash}
+              alt="remove-icon"
+              width={24}
+              height={24}
+              onClick={() => handleDelete(id)}
+            />
           </button>
         </div>
       </div>

@@ -1,12 +1,21 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {v4} from 'uuid';
 import ProductCard from '../components/ProductCard';
 
 const Main = () => {
   const [newItem, setNewItem] = useState('');
   const [newItemPrice, setNewItemPrice] = useState('');
-  const [newItemImage, setNewItemImage] = useState(null);
-  const [productsList, setProductsList] = useState([]);
+  const [newItemImage, setNewItemImage] = useState();
+  const [productsList, setProductsList] = useState(() => {
+    const storedProducts = localStorage.getItem('products');
+    if (storedProducts === null) return [];
+
+    return JSON.parse(storedProducts);
+  });
+
+  useEffect(() => {
+    localStorage.setItem('products', JSON.stringify(productsList));
+  }, [productsList]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +39,12 @@ const Main = () => {
     ]);
   };
 
+  const handleDelete = (id) => {
+    setProductsList((currentList) =>
+      currentList.filter((product) => product.id !== id)
+    );
+  };
+
   return (
     <section className="flex justify-evenly max-container max-sm:flex-col-reverse max-sm:p-2">
       <div className="flex flex-col w-[50%] mb-6 max-sm:w-full">
@@ -38,7 +53,11 @@ const Main = () => {
         </div>
         <div className="w-full h-full grid grid-cols-3 gap-2 max-sm:grid-cols-2">
           {productsList.map((product) => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard
+              key={product.id}
+              {...product}
+              handleDelete={handleDelete}
+            />
           ))}
         </div>
       </div>
