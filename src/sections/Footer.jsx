@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="leading-6">
         <img src={headerimage} alt="footer-image" />
         <p className="text-center text-white">DESARROLADO POR DIEGO GONZALEZ</p>
-        <p className="text-center text-gray-300">ALURA LATAM- 202X</p>
+        <p className="text-center text-gray-300">ALURA LATAM- 2024</p>
       </div>
     </footer>
   );
